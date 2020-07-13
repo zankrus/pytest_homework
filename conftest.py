@@ -2,17 +2,16 @@ import logging
 
 import pytest
 
-#
-# @pytest.fixture()
-# def method_decorator(func):
-#     with open('loger', 'w') as file:
-#         file.write('Test')
-#         yield func
-#         file.write()
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--log", action="store", default="log.txt", help="Write log to file"
+    )
 
 
-@pytest.fixture()
-def write_to_file(filename, text):
-    with open(filename, 'w') as file:
-        file.write(text)
-        file.close()
+@pytest.fixture
+def log_file_name(request):
+    return request.config.getoption("--log")
+
+
+

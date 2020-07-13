@@ -6,6 +6,6 @@ def email_validator(email):
 
 
 def write_to_file(filename, text):
-    with open(filename, 'w') as file:
+    with open(filename, 'a') as file:
         file.write(text)
         file.close()
